@@ -13,30 +13,30 @@
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <link href="{{ asset('css/lsac.css') }}" rel="stylesheet">
         <script src="{{ asset('js/app.js') }}" defer></script>
-        <script src="{{ asset('js/lsac.js') }}"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     </head>
 
     <body>
 
         <nav class="navbar navbar-expand-lg navbar-light p-5">
-            <a class="navbar-brand pl-5" href="{{ url('/') }}">
+            <a id="navbar-brand" class="navbar-brand pl-5" href="{{ url('/') }}">
                 <img class="img-fluid" src="{{ asset('images/ajutor.png') }}" alt="help">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+                <img class="img-fluid" src="{{ asset('images/9dots.png') }}" alt="studying">
             </button>
 
             <div class="collapse navbar-collapse pr-5" id="navbarSupportedContent">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active" id="listItem">
-                        <button class="btn nav-link" onclick="window.location='{{ route('login') }}'">Logare</button>
+                <ul id="navList" class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <button id="buttons" class="btn btn-primary" onclick="window.location='{{ route('login') }}'">Logare</button>
                     </li>
-                    <li class="nav-item" id="listItem">
-                        <button class="btn nav-link" onclick="window.location='{{ route('register') }}'">Creare cont</button>
+                    <li class="nav-item">
+                        <button class="btn" onclick="window.location='{{ route('register') }}'">Creare cont</button>
                     </li>
-                    <li class="nav-item" id="listItem">
-                        <button class="btn nav-link" href="#">Contact</button>
+                    <li class="nav-item">
+                        <button class="btn"onclick="window.location='{{ url('/') }}'">Contact</button>
                     </li>
                 </ul>
             </div>
@@ -44,14 +44,14 @@
 
         <div class="container-fluid">
             <div class="row d-flex align-items-center justify-content-center">
-                <div class="col-md-6 pl-5">
-                    <p>Cumpăratul de teme nu a fost niciodată mai simplu!</p>
-                    <p>Platforma ideala pentru studenții de la Politehnică cu portofele pline, care au nevoie urgent de un înger care să le repare nota de intrare în examen.</p>
+                <div class="col-xl-6" id="buyHomeworks">
+                    <p id="homework">Cumpăratul de teme nu a fost niciodată mai simplu!</p>
+                    <p id="richStudent">Platforma ideala pentru studenții de la Politehnică cu portofele pline, care au nevoie urgent de un înger care să le repare nota de intrare în examen.</p>
 
-                            <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">Vreau să cumpăr</button> <!-- add .col-12 in order to be full width -->
-                            <button class="btn" style="background-color: #92E3A9;">Vreau sa fac teme pentru alții</button>
+                            <button id="buttons" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">Vreau să cumpăr</button> <!-- add .col-12 in order to be full width -->
+                            <button class="btn paidWork" id="paidWork">Vreau sa fac teme pentru alții</button>
                 </div>
-                <div class="col-md-6" style="background-color: yellow;">
+                <div id="studyingGirl" class="col-xl-6">
                     <center><img class="img-fluid" src="{{ asset('images/studying.png') }}" alt="studying"></center>
                 </div>
             </div>
@@ -60,16 +60,14 @@
         <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Exprimă-ți frustrările</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+                    <div class="modal-header" style="background-color: #92E3A9;">
+                        <h5 class="modal-title" id="exampleModalLongTitle" style="font-weight: 700; line-height: 20.11px;">Exprimă-ți frustrările</h5>
+                            <img id="closeModal" class="img-fluid" src="{{ asset('images/close_modal.png') }}" alt="close_modal"  data-dismiss="modal" aria-label="Close">
                     </div>
                     <div class="modal-body">
                         <form onsubmit="return false;">
                             @csrf
-                            <div>
+                            <div class="container">
                                 <div class="row form-group">
                                     <select name="subject" class="custom-select col-12" id="subject">
                                         <option value="">Alege materia</option>
@@ -79,80 +77,105 @@
                                     </select>
                                 </div>
                                 <div class="row form-group">
-                                    <input class="custom-select col-12" type="text" placeholder="Titlul proiectului" id="projectTitle">
+                                    <input class="form-control col-12" type="text" placeholder="Titlul proiectului" id="projectTitle">
                                 </div>
                                 <div class="row form-group d-flex justify-content-center align-items-center">
-                                    <button type='button' onclick="sendRequest()" class="btn btn-primary btn-rounded" style="background-color: #2d838d;color: #ffffff">Încarcă</button>
+                                    <button type='button' onclick="sendRequest()" id="buttons" class="btn btn-primary col-6 upload">Încarcă</button>
                                 </div>
-                            </div>
-                            <div class="container-fluid" id="print">
-                                @foreach ($complaints as $complaint)
-                                    {{ $complaint->title }}
-                                    <br/>
-                                    {{ $complaint->subject }}
-                                    <br/>
-                                    <br/>
-                                @endforeach
                             </div>
                         </form>
                     </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="container-fluid" style="background-color:green;">
-            <div class="container" style="background-color:blue;">
-                <div class="row d-flex justify-content-center">
-                    <p>Cum funcționează?</p>
-                </div>
-                <div class="row d-flex justify-content-center">
-                    <div class="col-md-4">
-                        adsa
-                    </div>
-                    <div class="col-md-4">
-                        adsa
-                    </div>
-                    <div class="col-md-4">
-                        adsa
+                    <div class="container-fluid" id="print">
+                        <div class="container-fluid" id="complaintsTillNow">
+                            Plângeri introduse până acum.
+                        </div>
+                        <div class="container" id=complaintsArea>
+                            @foreach ($complaints as $complaint)
+                                <p class="title">{{ $complaint->title }}</p>
+                                <p class="subject">({{ $complaint->subject }})</p>
+                            @endforeach
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    dadsa
+        <div class="container-fluid" id="howItGoes">
+            <div class="container">
+                <div class="row d-flex justify-content-center pb-5">
+                    <p id="homework">Cum funcționează?</p>
                 </div>
-                <div class="col-md-6">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-xl-4">
+                        <div class="row d-flex">
+                            <div class="col-3">
+                                <img class="img-fluid" src="{{ asset('images/one.png') }}" alt="one">
+                            </div>
+                            <div class="col-9 howItWorks">
+                                Realizezi un cont pe platformă în care introduci câteva detalii personale (nu vă faceți griji, profesorii nu or să va descopere) și materiile la care ai nevoie de ajutor.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4">
+                        <div class="row d-flex">
+                            <div class="col-3">
+                                <img class="img-fluid" src="{{ asset('images/two.png') }}" alt="two">
+                            </div>
+                            <div class="col-9 howItWorks">
+                                Străbați platforma în căutare de studenți care oferă servicii la materiile dorite sau te rogi la Sfântul 5 să primești mesaj de la cineva care te descoperă și e dispus să te salveze.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4">
+                        <div class="row d-flex">
+                            <div class="col-3">
+                                <img class="img-fluid" src="{{ asset('images/three.png') }}" alt="three">
+                            </div>
+                            <div class="col-9 howItWorks">
+                                După ce stabiliți o sumă care oricum este de zeci de ori mai mare decât la alte universități, aștepti ca noul vostru amic să vă încarce soluția pe platformă. Jumătate din plată oferiți în avans, restul după ce vă vedeți intrat în examen.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container" id="mail">
+            <div class="row shadow p-5">
+                <div class="col-xl-6" id="boldColumn">
+                    <p id="boldness">Ai tupeu și crezi că poți să aduci îmbunătățiri la platformă?</p>
+                    <p id="sendUsEmail" class="howItWorks">Trimite-ne un mail și roagă-te să nu ne apuce râsul când vedem ce îți trece prin cap.</p>
+                </div>
+                <div class="col-xl-6">
                     <form>
                         @csrf
-                      <div class="form-group">
-                        <label for="exampleInputEmail1">Email address</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-                      </div>
-                      <div class="form-group">
-                        <label for="exampleInputPassword1">Password</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                      </div>
-                      <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                      </div>
-                      <button type="submit" class="btn btn-primary">Submit</button>
+                        <div class="form-group">
+                            <label>Nume</label>
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>Înjurătura</label>
+                            <input type="text" class="form-control" style="height:82px;">                           
+                        </div>
+                      <button type="submit" id="buttons" class="btn btn-primary center-button">Trimite</button>
                     </form>
                 </div>
             </div>
         </div>
 
         <footer>
-            <div class="container">
+            <div class="container py-5">
                 <div class="row d-flex align-items-center justify-content-center">
-                    sadsds
+                    <a href="#"><img class="img-fluid footer-img" src="{{ asset('images/instagram.png') }}" alt="instagram"></a>
+                    <a href="#"><img class="img-fluid footer-img" src="{{ asset('images/twitter.png') }}" alt="twitter"></a>
+                    <a href="#"><img class="img-fluid footer-img" src="{{ asset('images/facebook.png') }}" alt="facebook"></a>
                 </div>
-                <div class="row d-flex align-items-center justify-content-center">
-                    Copyright <?php echo date("Y"); ?> | Cine ne pârăște o mierlește.
+                <div class="row d-flex align-items-center justify-content-center" id="footerText">
+                    <center>Copyright <?php echo date("Y"); ?> | Cine ne pârăște o mierlește.</center>
                 </div>
             </div>       
         </footer>
@@ -161,13 +184,18 @@
 
 </html>
 
+<script src="{{ asset('js/lsac.js') }}"></script>
 <script type="text/javascript">
         function sendRequest(){
             // printing the data in the modal
             var inputVal = $("#projectTitle").val();
             var selectedSubject = $("#subject").children("option:selected").val();
-            $("#print").append(`${inputVal}</br>(${selectedSubject})</br></br>`);
-
+            if (inputVal != "" && selectedSubject != "") {
+                $("#complaintsArea").append(`<p class="title">${inputVal}</p><p class="subject">(${selectedSubject})</p>`);
+            }
+            else {
+                alert('Selecteaza materia si introdu numele unui proiect!');
+            }
             // ajax call to send the data to the controller
             $.ajax({
                     url: "{{ route('sendData') }}",
