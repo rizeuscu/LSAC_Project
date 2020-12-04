@@ -53,8 +53,8 @@ label {
 }
 
 #buyHomeworks {
-	padding-left: 20vh;
-	padding-right: 20vh;
+	padding-left: 18vh;
+	padding-right: 18vh;
 }
 
 #homework {
@@ -117,7 +117,6 @@ label {
 .paidWork {
 	background-color: #92E3A9;
 	font-weight: 700;
-	margin-left: 30px;
 }
 
 #paidWork:hover {
@@ -189,7 +188,7 @@ label {
     background-image: url("/images/arrow.png");
 }
 
-@media (max-width: 1199px){
+@media (max-width: 1199px) {
 	#homework {
 		font-size: 28px;
 	}
@@ -197,6 +196,10 @@ label {
 	#buyHomeworks {
 		padding:5vh;
 		padding-top: 7vh;
+	}
+
+	#boldness {
+		font-size: 20px;
 	}
 
 	#studyingGirl {
@@ -222,7 +225,6 @@ label {
 
 	.paidWork {
 		margin-top: 2vh;
-		margin-left: 0;
 	}
 
 	.center-button {
@@ -235,3 +237,5 @@ label {
 		padding-top: 4vh;
 	}
 }
+
+

@@ -47,9 +47,14 @@
                 <div class="col-xl-6" id="buyHomeworks">
                     <p id="homework">Cumpăratul de teme nu a fost niciodată mai simplu!</p>
                     <p id="richStudent">Platforma ideala pentru studenții de la Politehnică cu portofele pline, care au nevoie urgent de un înger care să le repare nota de intrare în examen.</p>
-
-                            <button id="buttons" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">Vreau să cumpăr</button> <!-- add .col-12 in order to be full width -->
-                            <button class="btn paidWork" id="paidWork">Vreau sa fac teme pentru alții</button>
+                        <div class="row">
+                            <div class="col-xl-4">
+                                <button id="buttons" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">Vreau să cumpăr</button> <!-- add .col-12 in order to be full width -->
+                            </div>
+                            <div class="col-xl-8 d-flex justify-content-start">
+                                <button class="btn paidWork" id="paidWork">Vreau sa fac teme pentru alții</button>
+                            </div>
+                        </div>
                 </div>
                 <div id="studyingGirl" class="col-xl-6">
                     <center><img class="img-fluid" src="{{ asset('images/studying.png') }}" alt="studying"></center>
@@ -108,30 +113,30 @@
                 <div class="row d-flex justify-content-center">
                     <div class="col-xl-4">
                         <div class="row d-flex">
-                            <div class="col-3">
+                            <div class="col-3 digits">
                                 <img class="img-fluid" src="{{ asset('images/one.png') }}" alt="one">
                             </div>
-                            <div class="col-9 howItWorks">
+                            <div class="col-9 howItWorks digitsText">
                                 Realizezi un cont pe platformă în care introduci câteva detalii personale (nu vă faceți griji, profesorii nu or să va descopere) și materiile la care ai nevoie de ajutor.
                             </div>
                         </div>
                     </div>
                     <div class="col-xl-4">
                         <div class="row d-flex">
-                            <div class="col-3">
+                            <div class="col-3 digits">
                                 <img class="img-fluid" src="{{ asset('images/two.png') }}" alt="two">
                             </div>
-                            <div class="col-9 howItWorks">
+                            <div class="col-9 howItWorks digitsText">
                                 Străbați platforma în căutare de studenți care oferă servicii la materiile dorite sau te rogi la Sfântul 5 să primești mesaj de la cineva care te descoperă și e dispus să te salveze.
                             </div>
                         </div>
                     </div>
                     <div class="col-xl-4">
                         <div class="row d-flex">
-                            <div class="col-3">
+                            <div class="col-3 digits">
                                 <img class="img-fluid" src="{{ asset('images/three.png') }}" alt="three">
                             </div>
-                            <div class="col-9 howItWorks">
+                            <div class="col-9 howItWorks digitsText">
                                 După ce stabiliți o sumă care oricum este de zeci de ori mai mare decât la alte universități, aștepti ca noul vostru amic să vă încarce soluția pe platformă. Jumătate din plată oferiți în avans, restul după ce vă vedeți intrat în examen.
                             </div>
                         </div>
