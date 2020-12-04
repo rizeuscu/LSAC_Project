@@ -9,6 +9,6 @@
 7. php artisan migrate
 8. composer dump-autoload
 9. php artisan db:seed
-10.php artisan serve &
+10. php artisan serve &
 
 ## Enjoy HomeworkTrading Website
